@@ -21,6 +21,7 @@ const getHouse = async (req, res) => {
     }
 };
 
+
 const createHouse = async (req, res) => {
     try {
         const { name, founder } = req.body;
@@ -56,4 +57,7 @@ const deleteHouse = async (req, res) => {
     }
 };
 
+
+
 module.exports = { getAllHouses, getHouse, createHouse, updateHouse, deleteHouse};
+

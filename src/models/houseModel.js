@@ -18,10 +18,10 @@ const createHouse = async (name, founder) => {
     return result.rows[0];
 };
 
-const updateHouse = async ( name, founder) => {
+const updateHouse = async (id, name, founder) => {
     const result = await pool.query(
         "UPDATE houses SET evento = $1, name = $2, founder*",
-        [name, founder]
+        [name, founder, id]
     );
     return result.rows[0];
 };
@@ -36,5 +36,6 @@ const deleteHouse = async (id) => {
     return { message: "Casa deletada com sucesso." };
 
 }
+    
 
-module.exports = { getHouses, getHouseById, createHouse, updateHouse, deleteHouse };
+module.exports = { getHouses, getHouseById, createHouse, updateHouse, deleteHouse};
