@@ -2,7 +2,7 @@ const houseModel = require("../models/houseModel");
 
 const getAllHouses = async (req, res) => {
     try {
-        const houses = await houseModel.getHouses();
+        const houses = await houseModel.getAllHouses();
         res.json(houses);
     } catch (error) {
         res.status(500).json({ message: "Erro ao buscar casas." });
@@ -21,30 +21,30 @@ const getHouse = async (req, res) => {
     }
 };
 
-
 const createHouse = async (req, res) => {
     try {
         const { name, founder } = req.body;
         const newHouse = await houseModel.createHouse(name, founder);
         res.status(201).json(newHouse);
     } catch (error) {
-        console.log(error);
+	console.log(error);
         if (error.code === "23505") { 
-            return res.status(400).json({ message: "Casa já cadastrada." });
+            return res.status(400).json({ message: "Casa já cadastrado." });
         }
         res.status(500).json({ message: "Erro ao criar casa." });
     }
-}; 
+};
+
 const updateHouse = async (req, res) => {
     try {
         const { name, founder } = req.body;
         const updatedHouse = await houseModel.updateHouse(req.params.id, name, founder);
-        if (!updatedHouse) { 
-            return res.status(404).json({ message: "Casa não encontrada." });
+        if (!updatedHouse) {
+            return res.status(404).json({ message: "Casa não encontrado." });
         }
         res.json(updatedHouse);
     } catch (error) {
-        res.status(500).json({ message: "Erro ao atualizar Casa." });
+        res.status(500).json({ message: "Erro ao atualizar casa." });
     }
 };
 
@@ -53,11 +53,8 @@ const deleteHouse = async (req, res) => {
         const message = await houseModel.deleteHouse(req.params.id);
         res.json(message);
     } catch (error) {
-        res.status(500).json({ message: "Erro ao deletar Casa." });
+        res.status(500).json({ message: "Erro ao deletar casa." });
     }
 };
 
-
-
-module.exports = { getAllHouses, getHouse, createHouse, updateHouse, deleteHouse};
-
+module.exports = { getAllHouses, getHouse, createHouse, updateHouse, deleteHouse };
