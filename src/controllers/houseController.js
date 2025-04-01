@@ -29,9 +29,9 @@ const createHouse = async (req, res) => {
     } catch (error) {
         console.log(error);
         if (error.code === "23505") { 
-            return res.status(400).json({ message: " House já cadastrada." });
+            return res.status(400).json({ message: "Casa já cadastrada." });
         }
-        res.status(500).json({ message: "Erro ao criar house." });
+        res.status(500).json({ message: "Erro ao criar casa." });
     }
 }; 
 const updateHouse = async (req, res) => {
@@ -39,11 +39,11 @@ const updateHouse = async (req, res) => {
         const { name, founder } = req.body;
         const updatedHouse = await houseModel.updateHouse(req.params.id, name, founder);
         if (!updatedHouse) { 
-            return res.status(404).json({ message: "House não encontrado." });
+            return res.status(404).json({ message: "Casa não encontrada." });
         }
         res.json(updatedHouse);
     } catch (error) {
-        res.status(500).json({ message: "Erro ao atualizar House." });
+        res.status(500).json({ message: "Erro ao atualizar Casa." });
     }
 };
 
@@ -52,7 +52,7 @@ const deleteHouse = async (req, res) => {
         const message = await houseModel.deleteHouse(req.params.id);
         res.json(message);
     } catch (error) {
-        res.status(500).json({ message: "Erro ao deletar house." });
+        res.status(500).json({ message: "Erro ao deletar Casa." });
     }
 };
 
