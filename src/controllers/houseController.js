@@ -27,10 +27,6 @@ const createHouse = async (req, res) => {
         const newHouse = await houseModel.createHouse(name, founder);
         res.status(201).json(newHouse);
     } catch (error) {
-	console.log(error);
-        if (error.code === "23505") { 
-            return res.status(400).json({ message: "Casa já cadastrado." });
-        }
         res.status(500).json({ message: "Erro ao criar casa." });
     }
 };
