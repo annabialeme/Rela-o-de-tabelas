@@ -24,6 +24,9 @@ const getWizard = async (req, res) => {
 const createWizard = async (req, res) => {
     try {
         const { name, house_id } = req.body;
+        if(!name || house_id) {
+            return res.tatus(400).json({message: "Nome e casa são obrigatórios."})
+        }
         const newWizard = await wizardModel.createWizard(name, house_id);
         res.status(201).json(newWizard);
     } catch (error) {
