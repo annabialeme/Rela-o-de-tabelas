@@ -29,7 +29,7 @@ const exportWizardCSV = async (req, res) => {
 
 const exportWizardPDF = async (req, res) => {
     try {
-        const wizards = await wizardModel.getWizards();
+        const wizards = await wizardModel.getAllWizards();
 
         res.setHeader("Content-Type", "application/pdf");
         res.setHeader("Content-Disposition", "inline; filename=wizards.pdf")
