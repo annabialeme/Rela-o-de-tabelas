@@ -11,7 +11,7 @@ const getAllWizards = async (req, res) => {
 
 const getWizard = async (req, res) => {
     try {
-        const wizard = await wizardModel.getWizardById(req.params.id);
+        const wizard = await wizardModel.getWizard(req.params.id);
         if (!wizard) {
             return res.status(404).json({ message: "Bruxo não encontrado." });
         }
